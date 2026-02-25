@@ -4,7 +4,7 @@ Portfólio profissional responsivo desenvolvido com foco em design moderno, expe
 
 ## 📋 Sobre
 
-Website pessoal que apresenta informações profissionais, projetos desenvolvidos e formas de contato. Design limpo e minimalista com paleta de cores escura e detalhes em roxo.
+Página web pessoal que apresenta informações profissionais, projetos desenvolvidos e formas de contato. Design limpo e minimalista com paleta de cores escura e detalhes em roxo.
 
 ---
 
