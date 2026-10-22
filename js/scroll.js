@@ -37,15 +37,17 @@ export function initScroll() {
 
 export function initParallax() {
   if (reduced) return;
+  // Em coluna única (< 900px) o espaço entre cartões é pequeno: reduz a amplitude para não sobrepor.
+  const amp = () => (innerWidth < 900 ? 70 : 220);
   document.querySelectorAll('[data-depth]').forEach((el) => {
     const d = parseFloat(el.dataset.depth);
     gsap.fromTo(
       el,
-      { y: d * 220 },
+      { y: () => d * amp() },
       {
-        y: d * -220,
+        y: () => d * -amp(),
         ease: 'none',
-        scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true },
+        scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true, invalidateOnRefresh: true },
       },
     );
   });

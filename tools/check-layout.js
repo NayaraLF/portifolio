@@ -20,3 +20,18 @@ window.__checkLayout = function () {
     offenders,
   };
 };
+
+// Retorna pares de cartões de serviço que se sobrepõem na posição atual de scroll.
+window.__checkCards = function () {
+  const rects = [...document.querySelectorAll('.card')].map((c) => c.getBoundingClientRect());
+  const hits = [];
+  for (let i = 0; i < rects.length; i++) {
+    for (let j = i + 1; j < rects.length; j++) {
+      const a = rects[i], b = rects[j];
+      const ox = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+      const oy = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+      if (ox > 1 && oy > 1) hits.push([i + 1, j + 1, Math.round(oy)]);
+    }
+  }
+  return hits;
+};

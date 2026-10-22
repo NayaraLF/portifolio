@@ -50,7 +50,10 @@ function initMetodo() {
   mm.add('(min-width: 900px)', () => {
     const track = document.querySelector('.method__track');
     const viewport = document.querySelector('.method__viewport');
-    const dist = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
+    const dist = () => {
+      const pad = parseFloat(getComputedStyle(viewport).paddingLeft) || 0;
+      return Math.max(0, track.scrollWidth - (viewport.clientWidth - pad * 2));
+    };
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: '#metodo',

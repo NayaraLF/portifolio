@@ -160,7 +160,7 @@ export function initScene(canvas, { still = false } = {}) {
     // brilho central: pontinho no início, cresce com a faísca
     const settle = smooth(0.18, 0.4, current);
     glowU.uSize.value = 0.1 + burst * 0.9 + (1 - settle) * 0.1;
-    glowU.uAlpha.value = 0.55 - settle * 0.42 + burst * 0.45;
+    glowU.uAlpha.value = 0.55 - settle * 0.48 + burst * 0.45;
     renderer.render(scene, camera);
   }
   frame();
