@@ -1,14 +1,21 @@
 // Reveals de texto: linhas com máscara e palavras acendendo com o scroll.
-import { reduced } from './scroll.js';
+import { reduced, sortTriggers } from './scroll.js';
 
 const triggers = [];
+
+// Os spans visuais ficam em aria-hidden; o texto lido por leitores de tela vai num span .sr-only.
+function addScreenReaderText(el, text) {
+  const sr = document.createElement('span');
+  sr.className = 'sr-only';
+  sr.textContent = text;
+  el.appendChild(sr);
+}
 
 export function splitWords(el) {
   const text = el.dataset.orig ?? el.textContent.trim();
   el.dataset.orig = text;
-  el.setAttribute('aria-label', text);
   el.innerHTML = '';
-  return text.split(/\s+/).map((word, i, arr) => {
+  const words = text.split(/\s+/).map((word, i, arr) => {
     const span = document.createElement('span');
     span.className = 'w';
     span.setAttribute('aria-hidden', 'true');
@@ -16,6 +23,8 @@ export function splitWords(el) {
     el.appendChild(span);
     return span;
   });
+  addScreenReaderText(el, text);
+  return words;
 }
 
 export function splitLines(el) {
@@ -30,7 +39,7 @@ export function splitLines(el) {
     lines[lines.length - 1].push(w.textContent);
   });
   el.innerHTML = '';
-  return lines.map((parts) => {
+  const lineEls = lines.map((parts) => {
     const mask = document.createElement('span');
     mask.className = 'line-mask';
     mask.setAttribute('aria-hidden', 'true');
@@ -41,6 +50,8 @@ export function splitLines(el) {
     el.appendChild(mask);
     return line;
   });
+  addScreenReaderText(el, el.dataset.orig);
+  return lineEls;
 }
 
 function build() {
@@ -87,9 +98,22 @@ export async function initTextReveals() {
     html.classList.remove('pre');
     return;
   }
-  await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))]);
+  let timedOut = false;
+  await Promise.race([
+    document.fonts.ready,
+    new Promise((r) => setTimeout(() => { timedOut = true; r(); }, 2500)),
+  ]);
   build();
   html.classList.remove('pre');
+
+  const rebuild = () => {
+    build();
+    sortTriggers();
+    ScrollTrigger.refresh();
+  };
+
+  // Fonte lenta: as linhas foram medidas com a fonte reserva; refaz quando a web font chegar.
+  if (timedOut) document.fonts.addEventListener('loadingdone', () => rebuild(), { once: true });
 
   let timer;
   let lastWidth = innerWidth;
@@ -98,10 +122,9 @@ export async function initTextReveals() {
     timer = setTimeout(() => {
       if (innerWidth === lastWidth) return; // ignora barras do navegador móvel
       lastWidth = innerWidth;
-      build();
-      ScrollTrigger.refresh();
+      rebuild();
       // O primeiro refresh pode medir pins antes do layout assentar; o segundo fecha a conta.
-      setTimeout(() => ScrollTrigger.refresh(), 300);
+      setTimeout(() => { sortTriggers(); ScrollTrigger.refresh(); }, 300);
     }, 200);
   });
 }

@@ -1,11 +1,11 @@
 // Animações por capítulo, todas ligadas ao scroll.
 import { reduced } from './scroll.js';
 
-export function initChapters({ scene }) {
+export function initChapters({ getScene }) {
   if (reduced) return;
   initVazio();
   initRuido();
-  initFaisca(scene);
+  initFaisca(getScene);
   initMetodo();
   initServicos();
   initContato();
@@ -32,8 +32,9 @@ function initRuido() {
   tl.fromTo('#ruido .noise__copy', { opacity: 1 }, { opacity: 0.0, ease: 'power1.in', duration: 0.25 }, 0.95);
 }
 
-function initFaisca(scene) {
+function initFaisca(getScene) {
   const proxy = { b: 0 };
+  const scene = { setBurst: (b) => getScene()?.setBurst(b) };
   const tl = gsap.timeline({
     scrollTrigger: { trigger: '#faisca', start: 'top top', end: '+=110%', pin: true, scrub: 0.6 },
   });
@@ -87,8 +88,8 @@ function initContato() {
     scale: 1, ease: 'none',
     scrollTrigger: { trigger: '#contato', start: 'top 85%', end: 'top 10%', scrub: true },
   });
-  gsap.from('.contact__copy .btn, .links li, .foot', {
-    opacity: 0, y: 24, duration: 1, ease: 'expo.out', stagger: 0.08,
-    scrollTrigger: { trigger: '.contact__copy', start: 'top 65%', once: true },
-  });
+  const reveal = { trigger: '.contact__copy', start: 'top 65%', once: true };
+  // O botão usa scale (não y): o efeito magnético já anima x/y nele.
+  gsap.from('.contact__copy .btn', { opacity: 0, scale: 0.9, duration: 1, ease: 'expo.out', scrollTrigger: reveal });
+  gsap.from('.links li, .foot', { opacity: 0, y: 24, duration: 1, ease: 'expo.out', stagger: 0.08, scrollTrigger: reveal });
 }

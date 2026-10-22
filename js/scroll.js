@@ -22,17 +22,43 @@ export function initScroll() {
     },
   });
 
+  const focusTarget = (el) => {
+    if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
+    el.focus({ preventScroll: true });
+  };
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
       const target = document.querySelector(a.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      if (lenis) lenis.scrollTo(target, { duration: 1.8, easing: (t) => 1 - Math.pow(1 - t, 4) });
-      else target.scrollIntoView();
+      if (lenis) {
+        lenis.scrollTo(target, { duration: 1.8, easing: (t) => 1 - Math.pow(1 - t, 4), onComplete: () => focusTarget(target) });
+      } else {
+        target.scrollIntoView();
+        focusTarget(target);
+      }
     });
   });
 
   return { lenis };
+}
+
+// O ScrollTrigger calcula os gatilhos na ordem de criação: os que ficam depois de um pin precisam
+// ser calculados depois dele. Ordena pela posição no documento e fixa a prioridade de refresh.
+export function sortTriggers() {
+  const all = ScrollTrigger.getAll().slice();
+  all.sort((a, b) => {
+    const ta = a.trigger, tb = b.trigger;
+    if (ta === tb) return 0;
+    if (!ta) return -1;
+    if (!tb) return 1;
+    const pos = ta.compareDocumentPosition(tb);
+    if (pos & Node.DOCUMENT_POSITION_FOLLOWING) return -1;
+    if (pos & Node.DOCUMENT_POSITION_PRECEDING) return 1;
+    return 0;
+  });
+  all.forEach((st, i) => { st.vars.refreshPriority = all.length - i; });
+  ScrollTrigger.sort();
 }
 
 export function initParallax() {
