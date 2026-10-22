@@ -1,130 +1,135 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfólio</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <nav>
-      <span class="logo">&lt;Nayara /&gt;</span>
-      <ul class="nav-links">
-        <li><a href="#about">Sobre mim</a></li>
-        <li><a href="#projects">Projetos</a></li>
-        <li><a href="#contact">Contato</a></li>
-      </ul>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nayara Louback — Desenvolvimento & Análise de Dados</title>
+  <meta name="description" content="Nayara Louback: sites premium sob medida, análise de dados, automação e sistemas com dados integrados.">
+  <meta name="theme-color" content="#06050A">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip" href="#metodo">Pular para o conteúdo</a>
+
+  <canvas id="stage" aria-hidden="true"></canvas>
+  <div class="fx fx-fog" aria-hidden="true"></div>
+  <div class="fx fx-grain" aria-hidden="true"></div>
+  <div class="fx fx-vignette" aria-hidden="true"></div>
+  <div id="progress" aria-hidden="true"><i></i></div>
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="nav__brand" href="#vazio" aria-label="Nayara Louback, início">NL<span>.</span></a>
+    <nav aria-label="Principal">
+      <a href="#metodo">Método</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#manifesto">Manifesto</a>
+      <a href="#contato" class="nav__cta">Contato</a>
     </nav>
+  </header>
 
-    <section id="hero">
-      <div class="hero-content">
-        <div class="avatar">
-          <img class="foto" src="./img/nayara.png" alt="Nayara" />
+  <main>
+    <!-- 1. VAZIO -->
+    <section id="vazio" class="ch ch--hero">
+      <p class="label" data-depth="0.05">Nayara Louback — Desenvolvimento &amp; Análise de Dados</p>
+      <h1 class="display" data-reveal="lines">Sites e dados que não se esquecem.</h1>
+      <p class="hint" aria-hidden="true"><span class="hint__line"></span>Role para acender</p>
+    </section>
+
+    <!-- 2. RUÍDO -->
+    <section id="ruido" class="ch ch--noise">
+      <div class="noise__stage">
+        <div class="noise__panels" aria-hidden="true">
+          <div class="npanel" data-z="1" style="--x:6%;--y:12%;--r:-4deg"><i></i><b>Template genérico</b></div>
+          <div class="npanel" data-z="2" style="--x:56%;--y:8%;--r:3deg"><i></i><b>Planilha esquecida</b></div>
+          <div class="npanel" data-z="3" style="--x:30%;--y:34%;--r:-2deg"><i></i><b>Banner que ninguém lê</b></div>
+          <div class="npanel" data-z="4" style="--x:62%;--y:48%;--r:5deg"><i></i><b>Relatório de 40 páginas</b></div>
+          <div class="npanel" data-z="2" style="--x:4%;--y:58%;--r:2deg"><i></i><b>Site lento</b></div>
+          <div class="npanel" data-z="3" style="--x:38%;--y:66%;--r:-5deg"><i></i><b>Dado sem contexto</b></div>
         </div>
-        <h1>Olá, eu sou a <span>Nayara</span></h1>
-        <p class="tagline">
-          Desenvolvedora web focada em criar soluções eficientes e explorar
-          novas tecnologias
-        </p>
-        <div class="roles">
-          <span class="role-tag">Full Stack</span>
-          
-          
-        </div>
-        <div class="cta-group">
-          <a href="#projects" class="btn btn-primary">Ver Projetos</a>
-          <a href="#contact" class="btn btn-outline">Falar Comigo</a>
+        <div class="noise__copy">
+          <p class="label">02 — O ruído</p>
+          <h2 class="title" data-reveal="lines">Entre milhares de sites iguais e relatórios que ninguém abre, a sua marca virou ruído.</h2>
         </div>
       </div>
     </section>
 
-    <section id="about">
-      <h2 class="section-title">Sobre Mim</h2>
-      <div class="bio-card fade-in">
-        <div class="bio-text">
-          <p>
-            Sou uma desenvolvedora focada em criar soluções eficientes e
-            explorar novas tecnologias. Atualmente, estou aprofundando meus
-            conhecimentos em desenvolvimento Full Stack.
-          </p>
-          <p>
-            Meus projetos  atuais estão focados em <strong>JavaScript </strong>,
-            <strong>Node.js</strong> e <strong>React</strong>.
-          </p>
-          <p>
-            Quando não estou codando, gosto de assistir aos jogos do meu time de
-            futebol do coração, brincar com meus cachorros e treinar.
-          </p>
-        </div>
-        
-          </div>
-        </div>
+    <!-- 3. FAÍSCA -->
+    <section id="faisca" class="ch ch--spark">
+      <div class="spark__flash" aria-hidden="true"></div>
+      <div class="spark__copy">
+        <p class="label">03 — A faísca</p>
+        <h2 class="display display--md" data-reveal="lines">Então alguém acende a luz.</h2>
+        <p class="lede" data-reveal="lines">Design com intenção, código com precisão e dados que explicam o próximo passo.</p>
       </div>
     </section>
 
-    <section id="projects">
-      <h2 class="section-title">Projetos</h2>
-      <div class="projects-grid" id="projects-grid">
-        <div class="project-card fade-in">
-          <div class="project-icon">🌌</div>
-          <h3>Space Pannel</h3>
-          <p>
-            Uma aplicação web moderna que integra dados de duas APIs para apresentar conteúdo relacionado ao espaço de forma elegante e responsiva.
-          </p>
-          <div class="project-tags">
-            
-            <span class="tag">JavaScript</span>
-            <span class="tag">Next.js</span>
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            
-          </div>
-          <div class="project-links">
-            <a href="https://space-panel-anfl.vercel.app/" target="_blank">🔗 Demo</a>
-            <a href="https://github.com/NayaraLF/space-panel" target="_blank">📁 GitHub</a>
-          </div>
+    <!-- 4. MÉTODO -->
+    <section id="metodo" class="ch ch--method" aria-labelledby="metodo-t">
+      <div class="method__pin">
+        <div class="method__head">
+          <p class="label">04 — Método</p>
+          <h2 class="title" id="metodo-t" data-reveal="lines">Quatro passos, nenhum atalho.</h2>
         </div>
-
-        <div class="project-card fade-in">
-          <div class="project-icon">📚</div>
-          <h3>Audiobook App</h3>
-          <p>
-            Projeto de uma aplicação web para reprodução de audiobooks. Desenvolvido com foco em criar um player de áudio interativo e responsivo para a obra clássica "Dom Casmurro" de Machado de Assis. A aplicação oferece uma interface intuitiva com navegação entre capítulos, controle de reprodução e um design moderno e acessível.
-          </p>
-          <div class="project-tags">
-            <span class="tag">HTML</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">CSS</span>
-          </div>
-          <div class="project-links">
-            <a href="https://projeto-audiobook-lake.vercel.app/" target="_blank">🔗 Demo</a>
-            <a href="https://github.com/NayaraLF/projeto-audiobook" target="_blank">📁 GitHub</a>
-          </div>
+        <div class="method__viewport">
+          <ol class="method__track" data-allow-overflow>
+            <li class="step"><span class="step__num" aria-hidden="true" data-depth="0.2">01</span><h3>Descoberta</h3><p>Entendo o negócio, o público e a pergunta que os dados precisam responder.</p></li>
+            <li class="step"><span class="step__num" aria-hidden="true" data-depth="0.2">02</span><h3>Direção</h3><p>Defino identidade, narrativa e estrutura antes de escrever a primeira linha.</p></li>
+            <li class="step"><span class="step__num" aria-hidden="true" data-depth="0.2">03</span><h3>Construção</h3><p>Desenvolvo com código limpo, performance e animação com propósito.</p></li>
+            <li class="step"><span class="step__num" aria-hidden="true" data-depth="0.2">04</span><h3>Lançamento</h3><p>Publico, meço e ajusto com base no que os dados mostram.</p></li>
+          </ol>
         </div>
-        </div>
+        <div class="method__bar" aria-hidden="true"><i></i></div>
       </div>
     </section>
 
-    <section id="contact">
-      <h2 class="section-title">Contato</h2>
-      <p>
-        Tem um projeto em mente ou quer bater um papo sobre tecnologia? Me manda uma
-        mensagem!
-      </p>
-      <a href="nayara993@gmail.com" class="btn btn-primary"
-        >✉️ Enviar E-mail</a
-      >
-      <div class="social-links">
-        <a href="https://www.linkedin.com/in/nayaralf/" class="social-btn" target="_blank">💼 LinkedIn</a>
-        <a href="https://github.com/NayaraLF" class="social-btn" target="_blank">🐙 GitHub</a>
-        
+    <!-- 5. SERVIÇOS -->
+    <section id="servicos" class="ch ch--services" aria-labelledby="serv-t">
+      <div class="services__head">
+        <p class="label">05 — Serviços</p>
+        <h2 class="title" id="serv-t" data-reveal="lines">O que posso construir com você.</h2>
       </div>
+      <ul class="cards">
+        <li class="card" data-depth="0.08"><span class="card__n">01</span><h3>Sites e experiências web sob medida</h3><p>Sites rápidos, responsivos e com movimento pensado para contar a história da sua marca.</p></li>
+        <li class="card" data-depth="0.22"><span class="card__n">02</span><h3>Análise de dados e relatórios</h3><p>Limpeza, análise e relatórios claros que transformam números em decisões.</p></li>
+        <li class="card" data-depth="0.14"><span class="card__n">03</span><h3>Automação e pipelines de dados (SQL, Python)</h3><p>Rotinas que coletam, tratam e entregam dados sem trabalho manual.</p></li>
+        <li class="card" data-depth="0.3"><span class="card__n">04</span><h3>Sistemas e apps com dados integrados</h3><p>Aplicações sob medida que unem interface, regras de negócio e dados.</p></li>
+      </ul>
     </section>
 
-    <footer>
-      <p>Developed by Nayara Louback · 2026</p>
-    </footer>
+    <!-- 6. MANIFESTO -->
+    <section id="manifesto" class="ch ch--manifesto">
+      <p class="label">06 — Manifesto</p>
+      <p class="manifesto" data-scrub-words>Um bom site é um bom argumento, e bons dados são a prova. Juntos, fazem uma marca ser lembrada e escolhida.</p>
+    </section>
 
-    <script src="script.js"></script>
-  </body>
+    <!-- 7. CONTATO -->
+    <section id="contato" class="ch ch--contact" aria-labelledby="contato-t">
+      <div class="orb" aria-hidden="true"></div>
+      <div class="contact__copy">
+        <p class="label">07 — Contato</p>
+        <h2 class="display display--md" id="contato-t" data-reveal="lines">Vamos acender o seu projeto?</h2>
+        <a class="btn" href="https://wa.me/5544991547508" target="_blank" rel="noopener noreferrer">Conversar no WhatsApp <span>→</span></a>
+        <ul class="links">
+          <li><a href="mailto:nayara993@gmail.com">nayara993@gmail.com</a></li>
+          <li><a href="https://www.linkedin.com/in/nayaralf/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="https://github.com/NayaraLF" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://wa.me/5544991547508" target="_blank" rel="noopener noreferrer">+55 44 99154-7508</a></li>
+        </ul>
+      </div>
+      <footer class="foot"><span>© 2026 Nayara Louback</span><span>Desenvolvimento &amp; Análise de Dados</span></footer>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
 </html>
