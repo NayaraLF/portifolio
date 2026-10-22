@@ -11,7 +11,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    var h = document.documentElement;
+    h.classList.add('js', 'pre');
+    setTimeout(function () { h.classList.remove('pre'); }, 4000);
+  </script>
 </head>
 <body>
   <a class="skip" href="#metodo">Pular para o conteúdo</a>

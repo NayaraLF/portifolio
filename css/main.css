@@ -91,7 +91,7 @@ html.pre [data-reveal] { visibility: hidden; }
 .ch--noise { padding: 0; }
 .noise__stage { position: relative; height: 100svh; overflow: clip; display: flex; align-items: center; padding-inline: var(--gut); }
 .noise__panels { position: absolute; inset: 0; perspective: 900px; }
-.npanel { --w: clamp(150px, 24vw, 320px); position: absolute; width: var(--w); left: min(var(--x), calc(100% - var(--w))); top: var(--y); aspect-ratio: 4 / 3; padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: rgba(244, 241, 250, 0.035); transform: rotate(var(--r)); display: flex; flex-direction: column; justify-content: space-between; opacity: 0.55; }
+.npanel { --w: clamp(150px, 24vw, 320px); position: absolute; width: var(--w); left: min(var(--x), calc(100% - var(--w) - 18px)); top: var(--y); aspect-ratio: 4 / 3; padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: rgba(244, 241, 250, 0.035); transform: rotate(var(--r)); display: flex; flex-direction: column; justify-content: space-between; opacity: 0.55; }
 .npanel i { display: block; height: 38%; border-radius: 6px; background: repeating-linear-gradient(90deg, rgba(244, 241, 250, 0.08) 0 22%, transparent 22% 26%); }
 .npanel b { font-family: var(--mono); font-weight: 400; font-size: 0.7rem; letter-spacing: 0.06em; color: var(--muted); }
 .noise__copy { position: relative; z-index: 2; display: grid; gap: 1.2rem; max-width: 22ch; text-shadow: 0 0 40px var(--ink), 0 0 20px var(--ink); }
@@ -133,6 +133,8 @@ html.pre [data-reveal] { visibility: hidden; }
 }
 .card { position: relative; padding: clamp(24px, 3vw, 40px); min-height: 260px; border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(160deg, rgba(196, 181, 253, 0.09), rgba(124, 58, 237, 0.03)); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); display: flex; flex-direction: column; justify-content: space-between; gap: 2rem; transition: border-color .4s; will-change: transform; }
 .card:hover { border-color: rgba(196, 181, 253, 0.5); }
+.card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .4s; background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), rgba(196, 181, 253, 0.16), transparent 60%); }
+.card:hover::before { opacity: 1; }
 .card__n { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.12em; color: var(--lavender); }
 .card h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.6rem, 2.6vw, 2.4rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 0.8rem; }
 .card p { color: var(--muted); max-width: 36ch; }
