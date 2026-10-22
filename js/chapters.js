@@ -27,7 +27,7 @@ function initRuido() {
   });
   panels.forEach((p) => {
     const z = parseFloat(p.dataset.z);
-    tl.fromTo(p, { z: 0, scale: 1 }, { z: -260 * z, scale: 0.7, opacity: 0, y: -40 * z, ease: 'power1.in', duration: 1 }, 0.15);
+    tl.fromTo(p, { z: 0, scale: 1, opacity: 0.78 }, { z: -260 * z, scale: 0.7, opacity: 0, y: -40 * z, ease: 'power1.in', duration: 1 }, 0.15);
   });
   tl.fromTo('#ruido .noise__copy', { opacity: 1 }, { opacity: 0.0, ease: 'power1.in', duration: 0.25 }, 0.95);
 }
@@ -41,7 +41,7 @@ function initFaisca(scene) {
     .to('#faisca .spark__flash', { opacity: 1, ease: 'power2.in', duration: 0.35 }, 0)
     .to(proxy, { b: 1, ease: 'power2.in', duration: 0.35, onUpdate: () => scene?.setBurst(proxy.b) }, 0)
     .to('#faisca .spark__flash', { opacity: 0.16, ease: 'power2.out', duration: 0.4 }, 0.38)
-    .to(proxy, { b: 0.25, ease: 'power2.out', duration: 0.5, onUpdate: () => scene?.setBurst(proxy.b) }, 0.38)
+    .to(proxy, { b: 0.04, ease: 'power2.out', duration: 0.5, onUpdate: () => scene?.setBurst(proxy.b) }, 0.38)
     .fromTo('#faisca .spark__copy', { opacity: 0, y: 40, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: 'power2.out' }, 0.5);
 }
 

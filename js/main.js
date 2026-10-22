@@ -1,10 +1,13 @@
 // Entrada: inicializa os módulos na ordem certa.
-import { initScroll, initParallax, initCursor, initHoverFx } from './scroll.js';
+import { initScroll, initParallax, initCursor, initHoverFx, reduced } from './scroll.js';
 import { initTextReveals } from './text.js';
 import { initChapters } from './chapters.js';
 
 async function boot() {
   const root = document.documentElement;
+  // Pins mudam a altura da página; restaurar scroll antigo cairia em posição errada.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (!location.hash) window.scrollTo(0, 0);
   if (!window.gsap || !window.ScrollTrigger) {
     root.classList.remove('pre');
     return;
@@ -16,7 +19,7 @@ async function boot() {
   let scene = null;
   try {
     const { initScene } = await import('./scene.js');
-    scene = initScene(document.getElementById('stage'));
+    scene = initScene(document.getElementById('stage'), { still: reduced });
   } catch (e) {
     console.warn('WebGL indisponível, usando fallback.', e);
   }

@@ -46,11 +46,11 @@ const glowFrag = /* glsl */ `
     float core = exp(-d * d * 18.0);
     float halo = exp(-d * 2.6) * 0.35;
     vec3 col = mix(vec3(0.49, 0.23, 0.93), vec3(0.96, 0.95, 0.98), core);
-    gl_FragColor = vec4(col, (core + halo) * uAlpha * smoothstep(1.0, 0.7, d));
+    gl_FragColor = vec4(col, (core + halo) * uAlpha * smoothstep(1.0, 0.15, d));
   }
 `;
 
-export function initScene(canvas) {
+export function initScene(canvas, { still = false } = {}) {
   let renderer;
   try {
     renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true, powerPreference: 'high-performance' });
@@ -125,6 +125,20 @@ export function initScene(canvas) {
     glow.scale.set(hh * 1.2, hh * 1.2, 1);
   }
   resize();
+
+  if (still) {
+    // movimento reduzido: um único quadro aceso, sem loop nem reação ao scroll/mouse
+    uniforms.uIntensity.value = 0.85;
+    uniforms.uBurst.value = 0.04;
+    camera.position.z = -8;
+    glowU.uSize.value = 0.14;
+    glowU.uAlpha.value = 0.2;
+    renderer.render(scene, camera);
+    const redraw = () => { resize(); renderer.render(scene, camera); };
+    window.addEventListener('resize', redraw);
+    return { setProgress() {}, setBurst() {}, dispose() { window.removeEventListener('resize', redraw); renderer.dispose(); } };
+  }
+
   window.addEventListener('resize', resize);
 
   let running = true;

@@ -100,6 +100,8 @@ export async function initTextReveals() {
       lastWidth = innerWidth;
       build();
       ScrollTrigger.refresh();
+      // O primeiro refresh pode medir pins antes do layout assentar; o segundo fecha a conta.
+      setTimeout(() => ScrollTrigger.refresh(), 300);
     }, 200);
   });
 }
